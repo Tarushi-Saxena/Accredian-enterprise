@@ -1,26 +1,147 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f4f6fb;
+  --foreground: #0b1020;
+  --ink: #0b1020;
+  --muted: #5b647a;
+  --border: #e3e8f4;
+  --surface: #eef2fb;
+  --surface-2: #ffffff;
+  --accent: #4f46e5;
+  --accent-2: #06b6d4;
+  --accent-soft: #e8e9ff;
+  --hero: #070b1a;
+  --success: #059669;
+  --danger: #dc2626;
+  --ring: color-mix(in oklab, var(--accent) 55%, white);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: color-mix(in oklab, var(--accent) 22%, white);
+}
+
+/* Subtle page backdrop */
+body::before {
+  content: "";
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(900px 520px at 12% -10%, color-mix(in oklab, var(--accent) 18%, transparent), transparent 60%),
+    radial-gradient(760px 520px at 92% 0%, color-mix(in oklab, var(--accent-2) 16%, transparent), transparent 55%);
+  opacity: 0.9;
+}
+
+@keyframes marquee-x {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes float-y {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -10px, 0);
+  }
+}
+
+.marquee {
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  gap: 0.75rem;
+  animation: marquee-x 34s linear infinite;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.text-gradient {
+  background: linear-gradient(120deg, var(--accent) 0%, var(--accent-2) 55%, color-mix(in oklab, var(--accent) 70%, white) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.card-shine {
+  position: relative;
+  overflow: hidden;
+}
+.card-shine::after {
+  content: "";
+  position: absolute;
+  inset: -40% -60%;
+  transform: rotate(12deg);
+  background: linear-gradient(
+    120deg,
+    transparent,
+    color-mix(in oklab, white 55%, transparent),
+    transparent
+  );
+  opacity: 0;
+  transition: opacity 500ms ease, transform 700ms ease;
+}
+.card-shine:hover::after {
+  opacity: 0.35;
+  transform: rotate(12deg) translate3d(8%, 0, 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-shine::after {
+    display: none;
+  }
+}
+
+.float-slow {
+  animation: float-y 7s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .float-slow {
+    animation: none;
+  }
 }

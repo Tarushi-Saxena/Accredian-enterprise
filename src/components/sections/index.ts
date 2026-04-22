@@ -1,0 +1,12 @@
+export { Audience } from "@/components/sections/Audience";
+export { CatFramework } from "@/components/sections/CatFramework";
+export { Delivery } from "@/components/sections/Delivery";
+export { DomainExpertise } from "@/components/sections/DomainExpertise";
+export { Edge } from "@/components/sections/Edge";
+export { FaqSection } from "@/components/sections/FaqSection";
+export { Hero } from "@/components/sections/Hero";
+export { LeadCaptureForm } from "@/components/sections/LeadCaptureForm";
+export { Partnerships } from "@/components/sections/Partnerships";
+export { Segmentation } from "@/components/sections/Segmentation";
+export { Testimonials } from "@/components/sections/Testimonials";
+export { TrackRecord } from "@/components/sections/TrackRecord";
