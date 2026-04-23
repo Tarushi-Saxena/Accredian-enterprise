@@ -35,27 +35,29 @@ export function Testimonials() {
                  
                  <div className="relative h-full w-full overflow-hidden rounded-[36px] bg-[#0A0F1C] border border-white/10 flex items-center">
                    
-                   <div className="relative z-10 w-full sm:w-1/2 p-8 sm:p-12">
-                      <div className="inline-block h-12 w-12 rounded-full border border-cyan-400 bg-cyan-500/20 text-cyan-200 flex items-center justify-center text-sm font-black shadow-[0_0_20px_rgba(0,255,255,0.5)] backdrop-blur-md mb-4">
+                   <div className="relative z-10 w-full sm:w-[60%] p-8 sm:p-12">
+                      <div className="inline-flex h-12 w-12 rounded-full border border-cyan-400 bg-cyan-500/20 text-cyan-200 items-center justify-center text-sm font-black shadow-[0_0_20px_rgba(0,255,255,0.5)] backdrop-blur-md mb-4">
                          +5k
                       </div>
                       <h3 className="text-2xl sm:text-3xl font-bold text-white leading-snug drop-shadow-lg">Active Enterprise Nodes</h3>
                       <p className="text-cyan-200 text-sm mt-2">Connecting global teams instantly.</p>
                    </div>
 
-                   <div className="absolute top-0 right-0 z-0 w-2/3 sm:w-1/2 h-full overflow-hidden mask-image-gradient">
-                     <div className="absolute inset-0 bg-gradient-to-r from-[#0A0F1C] via-[#0A0F1C]/50 to-transparent z-10" />
+                   <div className="absolute top-0 right-0 z-0 w-1/2 h-full overflow-hidden">
+                     {/* Soft blur overlay at the left edge of the image container to blend into dark background */}
+                     <div className="absolute inset-0 bg-gradient-to-r from-[#0A0F1C] via-[#0A0F1C]/20 to-transparent z-10" />
                      <Image 
                        src="https://storage.googleapis.com/accredian-assets/Frontend_Assests/Images/Accredian-react-site-images/other/customer-care-indian-hero-section-image-removebg-preview.webp"
                        alt="Global Network"
                        fill
-                       className="object-cover object-[center_10%] opacity-90 scale-105"
+                       className="object-contain object-right-bottom opacity-90 drop-shadow-2xl"
                      />
                    </div>
                  </div>
                </div>
              </TiltSurface>
           </div>
+
 
           {/* Marquee Reviews */}
           <div className="marquee w-full h-[320px] flex items-center overflow-hidden">
