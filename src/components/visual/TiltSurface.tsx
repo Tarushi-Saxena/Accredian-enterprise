@@ -12,7 +12,8 @@ type TiltSurfaceProps = {
 };
 
 /**
- * Pointer-driven 3D tilt (CSS transforms). Keeps motion subtle for enterprise polish.
+ * Pointer-driven 3D tilt (CSS transforms).
+ * Enhanced to allow children to use `translateZ` for pop-out depth.
  */
 export function TiltSurface({ children, className, maxTilt = 7 }: TiltSurfaceProps) {
   const root = useRef<HTMLDivElement>(null);
@@ -35,13 +36,22 @@ export function TiltSurface({ children, className, maxTilt = 7 }: TiltSurfacePro
   const onLeave = useCallback(() => setTilt(""), []);
 
   return (
-    <div ref={root} className={cn("[perspective:1100px]", className)} onPointerMove={onMove} onPointerLeave={onLeave}>
+    <div 
+      ref={root} 
+      className={cn("[perspective:1200px] w-full", className)} 
+      onPointerMove={onMove} 
+      onPointerLeave={onLeave}
+      style={{ transformStyle: "preserve-3d" }}
+    >
       <div
         className={cn(
-          "transform-gpu will-change-transform",
-          !tilt && "transition-transform duration-500 ease-out",
+          "h-full w-full will-change-transform",
+          !tilt && "transition-transform duration-700 ease-out",
         )}
-        style={{ transform: tilt || "rotateX(0deg) rotateY(0deg)", transformStyle: "preserve-3d" }}
+        style={{ 
+          transform: tilt || "rotateX(0deg) rotateY(0deg) translateZ(0)", 
+          transformStyle: "preserve-3d" 
+        }}
       >
         {children}
       </div>
